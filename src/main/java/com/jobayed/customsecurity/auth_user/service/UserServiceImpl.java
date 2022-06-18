@@ -1,12 +1,11 @@
 package com.jobayed.customsecurity.auth_user.service;
 
-import com.jobayed.customsecurity.auth_user.domain.Role;
-import com.jobayed.customsecurity.auth_user.domain.User;
-import com.jobayed.customsecurity.auth_user.repo.RoleRepo;
-import com.jobayed.customsecurity.auth_user.repo.UserRepo;
+import com.jobayed.customsecurity.auth_user.model.Role;
+import com.jobayed.customsecurity.auth_user.model.User;
+import com.jobayed.customsecurity.auth_user.repository.RoleRepo;
+import com.jobayed.customsecurity.auth_user.repository.UserRepo;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.boot.autoconfigure.data.web.SpringDataWebProperties;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -22,7 +21,6 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
-import java.util.List;
 
 @Service @RequiredArgsConstructor @Transactional @Slf4j
 public class UserServiceImpl implements UserService, UserDetailsService

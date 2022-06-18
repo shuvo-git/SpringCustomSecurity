@@ -1,11 +1,9 @@
 package com.jobayed.customsecurity.auth_user.service;
 
-import com.jobayed.customsecurity.auth_user.domain.Role;
-import com.jobayed.customsecurity.auth_user.domain.User;
+import com.jobayed.customsecurity.auth_user.model.Role;
+import com.jobayed.customsecurity.auth_user.model.User;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 @Service
 public interface UserService {

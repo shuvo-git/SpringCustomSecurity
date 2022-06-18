@@ -1,4 +1,4 @@
-package com.jobayed.customsecurity.auth_user.domain;
+package com.jobayed.customsecurity.auth_user.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
