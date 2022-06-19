@@ -32,6 +32,6 @@ public interface IBaseRepository {
      * @param id
      * @return 
      */
-    public <T> T findByIdLazy(Class<T> entity, String id);
+    public <T,E> T findByIdLazy(Class<T> entity, E id);
 
 }

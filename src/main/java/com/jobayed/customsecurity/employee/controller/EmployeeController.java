@@ -1,6 +1,8 @@
 package com.jobayed.customsecurity.employee.controller;
 
 import com.jobayed.customsecurity.employee.model.Employee;
+import com.jobayed.customsecurity.employee.model.Salary;
+import com.jobayed.customsecurity.employee.service.EmployeeSalaryService;
 import com.jobayed.customsecurity.employee.service.EmployeeService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -17,6 +19,7 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class EmployeeController {
     private final EmployeeService service;
+    private final EmployeeSalaryService serviceSalary;
 
     @PostMapping("/create")
     public ResponseEntity<Employee> create(){
@@ -31,6 +34,11 @@ public class EmployeeController {
     @GetMapping("/{id}")
     public ResponseEntity<Employee> getById(@PathVariable String id){
         return ResponseEntity.ok().body(service.getById(id));
+    }
+
+    @GetMapping("/salary/{id}")
+    public ResponseEntity<Salary> getSalaryById(@PathVariable Long id){
+        return ResponseEntity.ok().body(serviceSalary.getSalaryById(id));
     }
 
 }

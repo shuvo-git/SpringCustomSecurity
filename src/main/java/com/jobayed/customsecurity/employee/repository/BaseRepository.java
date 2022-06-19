@@ -74,7 +74,7 @@ public class BaseRepository implements IBaseRepository {
 
     @Override
     @Transactional
-    public <T> T findByIdLazy(Class<T> entity, String id){
+    public <T,E> T findByIdLazy(Class<T> entity, E id){
 
         T t = em.find(entity,id);
         if(!Hibernate.isPropertyInitialized(t,"designationId"))
