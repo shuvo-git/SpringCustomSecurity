@@ -1,8 +1,10 @@
 package com.jobayed.customsecurity.employee.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.Fetch;
 
 import javax.persistence.*;
 
@@ -21,7 +23,9 @@ public class Employee {
     @Column(name = "lastname",length = 50, nullable = true)
     private String lastName;
 
-    @ManyToOne
+    @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="designation_id",referencedColumnName = "designation_id")
     private Designation designationId;
+
+
 }

@@ -1,5 +1,6 @@
 package com.jobayed.customsecurity.auth_user.config;
 
+import com.fasterxml.jackson.datatype.hibernate5.Hibernate5Module;
 import com.jobayed.customsecurity.auth_user.utils.JwtUtils;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -14,4 +15,9 @@ public class GeneralConfig {
     }
 
     @Bean JwtUtils jwtUtils(){return new JwtUtils();}
+
+    @Bean
+    public Hibernate5Module datatypeHibernateModule() {
+        return new Hibernate5Module();
+    }
 }

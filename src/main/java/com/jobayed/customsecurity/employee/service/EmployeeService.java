@@ -2,10 +2,8 @@ package com.jobayed.customsecurity.employee.service;
 
 import com.jobayed.customsecurity.employee.model.Designation;
 import com.jobayed.customsecurity.employee.model.Employee;
-import com.jobayed.customsecurity.employee.repository.BaseRepository;
-import com.jobayed.customsecurity.employee.repository.DesignationRepository;
-import com.jobayed.customsecurity.employee.repository.EmployeeRepository;
-import com.jobayed.customsecurity.employee.repository.IBaseRepository;
+import com.jobayed.customsecurity.employee.model.Salary;
+import com.jobayed.customsecurity.employee.repository.*;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
@@ -14,7 +12,9 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 @Service
 @Slf4j
@@ -25,6 +25,8 @@ public class EmployeeService {
     private final DesignationRepository designationRepository;
     private final EmployeeRepository employeeRepository;
 
+    private  final SalaryRepository salaryRepository;
+
     public void save(Employee employee){
         log.info("Saving by persist method...");
         repository.save(employee);
@@ -34,8 +36,10 @@ public class EmployeeService {
     public void save(String empId, String firstName, String lastname, Long designationId)
     {
         log.info("Saving by Native Query...");
-        Designation tmp = designationRepository.findById(designationId).orElse(null);
-        if(tmp==null) return;
+
+        Designation d = designationRepository.findById(designationId).orElse(null);
+        if(d==null) return;
+
 
         String sql = "INSERT INTO employees(employee_id, firstname,lastname,designation_id) "
         +" VALUES(:employeeId, :firstName, :lastName, :designationId)";
@@ -43,7 +47,7 @@ public class EmployeeService {
         params.put("employeeId",empId);
         params.put("firstName",firstName);
         params.put("lastName",lastname);
-        params.put("designationId",tmp.getDesignationId());
+        params.put("designationId",d.getDesignationId());
 
         repository.save(sql,params,Employee.class);
         log.info("***** Saved *****");
@@ -51,5 +55,19 @@ public class EmployeeService {
 
     public Page<Employee> getAll(){
         return employeeRepository.findAll(PageRequest.of(0,5));
+    }
+
+    public Employee getById(String id)
+    {
+        //return employeeRepository.findById(id).orElse(null);
+
+//        String sql = "Select * from employees e where e.employee_id = :employeeId";
+//        Map<String, Object> params = new HashMap<>();
+//        params.put("employeeId",id);
+//        return repository.findOneById(sql,params);
+
+        //return repository.findByIdDynamicEntityGraph(id, Employee.class);
+
+        return repository.findByIdLazy(Employee.class,id);
     }
 }

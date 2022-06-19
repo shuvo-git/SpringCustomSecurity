@@ -3,12 +3,16 @@ package com.jobayed.customsecurity;
 import com.jobayed.customsecurity.auth_user.service.UserService;
 import com.jobayed.customsecurity.employee.model.Designation;
 import com.jobayed.customsecurity.employee.model.Employee;
+import com.jobayed.customsecurity.employee.model.Salary;
+import com.jobayed.customsecurity.employee.repository.SalaryRepository;
 import com.jobayed.customsecurity.employee.service.DesgnationService;
 import com.jobayed.customsecurity.employee.service.EmployeeService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+
+import java.math.BigDecimal;
 
 @SpringBootApplication
 public class CustomSecurityApplication {
@@ -20,7 +24,8 @@ public class CustomSecurityApplication {
 	@Bean
 	CommandLineRunner run(UserService userService,
 						  DesgnationService desgnationService,
-						  EmployeeService employeeService
+						  EmployeeService employeeService,
+						  SalaryRepository salaryRepository
 	){
 		return args->{
 //			userService.saveRole(new Role(null,"ROLE_ADMIN"));
@@ -38,10 +43,19 @@ public class CustomSecurityApplication {
 //			desgnationService.create(new Designation(2L,"Sr.SWE","Sr. Software Engineer"));
 //			desgnationService.create(new Designation(3L,"Jr.SWE","Jr. Software Engineer"));
 
-			//Designation tmp = desgnationService.get(1L);
-			//employeeService.save(new Employee("E000000001","Jobayed","Ullah",tmp));
 
-			//employeeService.save("E000000002","Ashrafun","Naher",2L);
+
+
+
+//			Designation d = desgnationService.get(1L);
+//			Salary s = salaryRepository.findById(1L).orElse(null);
+//			employeeService.save(new Employee("E000000001","Jobayed","Ullah",d));
+
+//			employeeService.save("E000000002","Shakil","Khan",2L);
+
+
+			salaryRepository.save(new Salary(1L,employeeService.getById("E000000001"), new BigDecimal(90800)));
+			salaryRepository.save(new Salary(2L,employeeService.getById("E000000002"),new BigDecimal(120760)));
 
 		};
 	}
