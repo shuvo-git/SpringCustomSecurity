@@ -1,6 +1,5 @@
-package com.jobayed.customsecurity.employee.repository;
+package com.jobayed.customsecurity.baserepository;
 
-import com.jobayed.customsecurity.employee.model.Employee;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.hibernate.Hibernate;
@@ -8,10 +7,6 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.*;
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.JoinType;
-import javax.persistence.criteria.Root;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -82,6 +77,14 @@ public class BaseRepository implements IBaseRepository {
         System.out.println(t);
 
         return t;
+    }
+
+    public <T> List<T> getAllByNamedNAtiveQuery(String queryStr, Class<T> entity){
+        Query query = em.createNamedQuery(queryStr,entity);
+
+        List<T> result = query.getResultList();
+
+        return result;
     }
 
 

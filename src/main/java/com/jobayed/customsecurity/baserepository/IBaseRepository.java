@@ -1,7 +1,8 @@
-package com.jobayed.customsecurity.employee.repository;
+package com.jobayed.customsecurity.baserepository;
 
 import com.jobayed.customsecurity.employee.model.Employee;
 
+import java.util.List;
 import java.util.Map;
 
 public interface IBaseRepository {
@@ -28,10 +29,22 @@ public interface IBaseRepository {
     public <T> T findByIdDynamicEntityGraph(String id, Class<T> entity);
 
     /***
-     * 
+     *
+     * @param entity
      * @param id
-     * @return 
+     * @return
+     * @param <T>
+     * @param <E>
      */
     public <T,E> T findByIdLazy(Class<T> entity, E id);
+
+    /***
+     *
+     * @param queryStr
+     * @param entity
+     * @return
+     * @param <T>
+     */
+    public <T> List<T> getAllByNamedNAtiveQuery(String queryStr, Class<T> entity);
 
 }

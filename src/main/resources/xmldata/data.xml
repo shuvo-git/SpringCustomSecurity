@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<timeCounters>
+    <timeCounter>
+        <id>3</id>
+        <employeeId>E000000003</employeeId>
+        <timeCountInMin>25</timeCountInMin>
+    </timeCounter>
+    <timeCounter>
+        <id>4</id>
+        <employeeId>E000000004</employeeId>
+        <timeCountInMin>25</timeCountInMin>
+    </timeCounter>
+    <timeCounter>
+        <id>5</id>
+        <employeeId>E000000005</employeeId>
+        <timeCountInMin>25</timeCountInMin>
+    </timeCounter>
+</timeCounters>

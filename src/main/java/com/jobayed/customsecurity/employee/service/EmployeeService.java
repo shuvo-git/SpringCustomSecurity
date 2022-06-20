@@ -1,20 +1,17 @@
 package com.jobayed.customsecurity.employee.service;
 
+import com.jobayed.customsecurity.baserepository.IBaseRepository;
 import com.jobayed.customsecurity.employee.model.Designation;
 import com.jobayed.customsecurity.employee.model.Employee;
-import com.jobayed.customsecurity.employee.model.Salary;
 import com.jobayed.customsecurity.employee.repository.*;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
-import java.util.Optional;
 
 @Service
 @Slf4j
