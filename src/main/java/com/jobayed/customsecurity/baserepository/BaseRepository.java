@@ -54,7 +54,6 @@ public class BaseRepository implements IBaseRepository {
     }
 
     @Override
-    @Transactional
     public <T> T findByIdDynamicEntityGraph(String id, Class<T> entity){
         EntityGraph graph = this.em.createEntityGraph(entity);
         Subgraph itemGraph = graph.addSubgraph("designationId");
@@ -68,7 +67,6 @@ public class BaseRepository implements IBaseRepository {
     }
 
     @Override
-    @Transactional
     public <T,E> T findByIdLazy(Class<T> entity, E id){
 
         T t = em.find(entity,id);

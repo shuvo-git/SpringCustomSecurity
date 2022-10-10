@@ -1,0 +1,43 @@
+<definitions targetNamespace="urn:unicontact_api">
+  <types>
+    <xsd:schema targetNamespace="urn:unicontact_api">
+      <xsd:import namespace="http://schemas.xmlsoap.org/soap/encoding/"/>
+      <xsd:import namespace="http://schemas.xmlsoap.org/wsdl/"/>
+    </xsd:schema>
+  </types>
+  <message name="sendSMSRequest">
+    <part name="username" type="xsd:string"/>
+    <part name="password" type="xsd:string"/>
+    <part name="brand_name" type="xsd:string"/>
+    <part name="msisdn" type="xsd:string"/>
+    <part name="language_id" type="xsd:string"/>
+    <part name="content" type="xsd:string"/>
+  </message>
+  <message name="sendSMSResponse">
+    <part name="error_code" type="xsd:int"/>
+    <part name="descr" type="xsd:string"/>
+  </message>
+  <portType name="unicontact_apiPortType">
+    <operation name="sendSMS">
+      <input message="tns:sendSMSRequest"/>
+      <output message="tns:sendSMSResponse"/>
+    </operation>
+  </portType>
+  <binding name="unicontact_apiBinding" type="tns:unicontact_apiPortType">
+    <soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <operation name="sendSMS">
+      <soap:operation soapAction="http://183.182.100.154/apiSendSms.php/sendSMS/sendSMS" style="rpc"/>
+      <input>
+        <soap:body use="encoded" namespace="" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </input>
+      <output>
+        <soap:body use="encoded" namespace="" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </output>
+    </operation>
+  </binding>
+  <service name="unicontact_api">
+    <port name="unicontact_apiPort" binding="tns:unicontact_apiBinding">
+      <soap:address location="http://183.182.100.154:8181/apiSendSms.php/sendSMS"/>
+    </port>
+  </service>
+</definitions>

@@ -1,5 +1,6 @@
 package com.jobayed.customsecurity.employee.controller;
 
+import com.jobayed.customsecurity.employee.dto.SalResultMap;
 import com.jobayed.customsecurity.employee.model.Employee;
 import com.jobayed.customsecurity.employee.model.Salary;
 import com.jobayed.customsecurity.employee.model.TimeCounter;
@@ -43,6 +44,11 @@ public class EmployeeController {
     @GetMapping("/salary")
     public ResponseEntity<Collection<Salary>> getAllSalary(){
         return ResponseEntity.ok().body(serviceSalary.getAllSalary());
+    }
+
+    @GetMapping("/salary-two")
+    public ResponseEntity<Collection<SalResultMap>> getAllSalaryTwo(){
+        return ResponseEntity.ok().body(serviceSalary.getAllSalaryTwoCol());
     }
 
     @GetMapping("/salary/{id}")
